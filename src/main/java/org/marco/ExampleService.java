@@ -15,14 +15,14 @@ public class ExampleService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExampleService.class);
 
-	@HystrixCommand()
+	
 	public Response serviceA() {
 		LOGGER.warn("Header uuid: {}", DataContainer.getData().getUuid());
 		processThatCanFail();
 		return new Response("Response From Service A");
 	}
 
-	@HystrixCommand()
+	
 	public Response serviceB() {
 		LOGGER.warn("Header uuid: {}", DataContainer.getData().getUuid());
 		processThatCanDelay();
