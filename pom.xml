@@ -26,7 +26,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
+			<dependency> 
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>Camden.SR5</version>
