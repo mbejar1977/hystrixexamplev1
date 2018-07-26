@@ -32,13 +32,13 @@ public class ExampleController {
 	@RequestMapping(method = RequestMethod.GET, path = "/case3")
 	public Response requestC(@RequestHeader(name = "uuid", required = true) String uuid) {
 		preProcess(uuid);
-		return service.serviceA();
+		return service.serviceC();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/case4")
 	public Response requestD(@RequestHeader(name = "uuid", required = true) String uuid) {
 		preProcess(uuid);
-		return service.serviceB();
+		return service.serviceD();
 	}
 
 	private void preProcess(String uuid) {
