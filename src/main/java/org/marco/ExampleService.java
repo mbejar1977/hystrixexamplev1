@@ -36,7 +36,13 @@ public class ExampleService {
 	@HystrixCommand(threadPoolKey = "PoolForServiceCandD", threadPoolProperties = {
 			@HystrixProperty(name = "coreSize", value = "20"),
 			@HystrixProperty(name = "maxQueueSize", value = "6") }, commandProperties = {
-					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500") })
+					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500"),
+					@HystrixProperty(name = "metrics.rollingPercentile.timeInMilliseconds", value = "15000"),
+					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),
+					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"),
+					@HystrixProperty(name = "metrics.rollingPercentile.numBuckets", value = "5")
+					})
 	public Response serviceC() {
 		LOGGER.warn("Header uuid: {}", DataContainer.getData().getUuid());
 		processThatCanFail();
@@ -57,7 +63,7 @@ public class ExampleService {
 	}
 
 	private boolean isFail() {
-		return randomGenerator.nextInt(2) != 0;
+		return randomGenerator.nextInt(4) == 2;
 	}
 
 	private void processThatCanFail() {
